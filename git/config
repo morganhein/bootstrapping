@@ -1,0 +1,13 @@
+[user]
+        email = mhein@conquestcyber.com
+        name = Morgan Hein 
+[core] 
+	excludesfile = /Users/morgan/.config/git/ignore
+#[url "git@gitlab.com/"] 
+#       insteadOf = https://gitlab.com/
+[url "git@github.com:morganhein"] 
+        insteadOf = https://github.com/morganhein 
+[pull]
+	rebase = true
+#[credential]
+#	helper = store
