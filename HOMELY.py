@@ -16,9 +16,8 @@ mkdir('~/.config')
 # symlink git
 symlink('git/config', '~/.config/git/config')
 symlink('git/ignore', '~/.config/git/ignore')
-#bashrc profiles
-#should we somehow instead *add* to the bashrc instead?
-symlink(' .bashrc', '~/.bashrc')
+# link aliases
+symlink('bash/.aliases', '~/.aliases')
 
 #install zsh https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
 installpkg('zsh', apt='zsh', apk='zsh', pac='zsh', brew='zsh')
