@@ -49,3 +49,9 @@ installpkg('bat', apt='bat', apk='bat', pac='bat', brew='bat')
 #node/npm
 #ssh agent / my ssh key
 #1password cli maybe?
+
+# TODO: set up SSH perms with key
+#chmod 700 /home/$USER/.ssh
+#chmod 644 /home/$USER/.ssh/authorized_keys
+#chmod 600 /home/$USER/.ssh/id_rsa and keys
+#https://superuser.com/a/1559867
