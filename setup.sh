@@ -2,6 +2,7 @@
 
 # TODO: detect Darwin/Mac
 
+echo "You kick ass. Remember to update this as you make changes!\n\n"
 arch=$(uname -m)
 kernel=$(uname -r)
 if [ -n "$(command -v lsb_release)" ]; then
@@ -36,6 +37,7 @@ Distro is set to: ${distro}"
 #update package manager
 #install git
 #install pip
+# https://pip.pypa.io/en/stable/user_guide/#running-pip
 PIP="pip"
 if [ "$distro" == "Ubuntu" ]; then
     sudo apt update
@@ -44,7 +46,7 @@ if [ "$distro" == "Ubuntu" ]; then
     #sudo cp /tmp/bootstrapping/keyboard /etc/default/keyboard
     PIP="/usr/bin/pip3"
     #TODO: Add this to bashrc?
-    export PATH="$PATH:$HOME/.local/lib/python3.6/site-packages/"
+    export PATH="$PATH:$HOME/.local/bin:$(python3 -m site --user-site)"
 elif [[ $distroname == "Arch" ]]; then
     sudo pacman -Syu
     sudo pacman -S git python3-pip
