@@ -39,6 +39,7 @@ Distro is set to: ${distro}"
 if [ "$distro" == "Ubuntu" ]; then
     sudo apt update
     sudo apt install git python3-pip -y
+    sudo cp keyboard /etc/default/keyboard
 elif [[ $distroname == "Arch" ]]; then
     sudo pacman -Syy
     sudo pacman -S git python-pip

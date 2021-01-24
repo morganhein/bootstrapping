@@ -1,0 +1,19 @@
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+# https://cgit.freedesktop.org/xkeyboard-config/tree/symbols/us#n1336
+# https://manpages.debian.org/testing/keyboard-configuration/keyboard.5.en.html
+# https://manpages.debian.org/buster/console-setup-mini/setupcon.1.en.html
+# https://wiki.debian.org/Keyboard
+# https://cgit.freedesktop.org/xkeyboard-config/tree/symbols/us#n1336
+# https://man.netbsd.org/xkeyboard-config.7
+# https://github.com/deekayen/norman
+
+
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+# https://normanlayout.info/about
+XKBVARIANT="norman"
+XKBOPTIONS=""
+
+BACKSPACE="guess"

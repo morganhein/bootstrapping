@@ -6,6 +6,7 @@
 # TODO: things to install
     # autojump
     # powerline into zsh
+    # install norman layout
 
 from homely.files import mkdir, download
 from homely.install import installpkg
