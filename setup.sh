@@ -36,17 +36,21 @@ Distro is set to: ${distro}"
 #update package manager
 #install git
 #install pip
+PIP="pip"
 if [ "$distro" == "Ubuntu" ]; then
     sudo apt update
     sudo apt install git python3-pip -y
     sudo cp keyboard /etc/default/keyboard
+    PIP="/usr/bin/pip3"
+    #TODO: Add this to bashrc?
+    export PATH="$PATH:$HOME/.local/lib/python3.6/site-packages/"
 elif [[ $distroname == "Arch" ]]; then
     sudo pacman -Syy
     sudo pacman -S git python-pip
 fi
 
 #install homely
-pip install homely --user
+${PIP} install homely --user
 
 #start up homely and sync
 homely update
