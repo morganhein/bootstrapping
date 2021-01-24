@@ -38,7 +38,7 @@ Distro is set to: ${distro}"
 #install pip
 if [ "$distro" == "Ubuntu" ]; then
     sudo apt update
-    sudo apt install git python3-pip
+    sudo apt install git python3-pip -y
 elif [[ $distroname == "Arch" ]]; then
     sudo pacman -Syy
     sudo pacman -S git python-pip
@@ -49,5 +49,3 @@ pip install homely --user
 
 #start up homely and sync
 homely update
-
-
