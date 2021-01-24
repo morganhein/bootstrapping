@@ -40,17 +40,19 @@ PIP="pip"
 if [ "$distro" == "Ubuntu" ]; then
     sudo apt update
     sudo apt install git python3-pip -y
-    sudo cp keyboard /etc/default/keyboard
+    #git clone git@github.com:morganhein/bootstrapping.git /tmp/bootstrapping
+    #sudo cp /tmp/bootstrapping/keyboard /etc/default/keyboard
     PIP="/usr/bin/pip3"
     #TODO: Add this to bashrc?
     export PATH="$PATH:$HOME/.local/lib/python3.6/site-packages/"
 elif [[ $distroname == "Arch" ]]; then
-    sudo pacman -Syy
-    sudo pacman -S git python-pip
+    sudo pacman -Syu
+    sudo pacman -S git python3-pip
 fi
 
 #install homely
-${PIP} install homely --user
+${PIP} install homely --user --no-binary :all:
 
 #start up homely and sync
+homely add https://github.com/morganhein/bootstrapping.git $HOME/.local/homely
 homely update
