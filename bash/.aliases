@@ -32,6 +32,9 @@ alias ls="command ls -G"
 ###############################################################################
 alias gc="git commit"
 alias gp="git push"
+alias ga="git add"
+alias gpl="git pull"
+alias gps="git push"
 
 ###############################################################################
 # Networking

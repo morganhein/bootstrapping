@@ -1,6 +1,7 @@
 # ~/bootstrapping/HOMELY.py
 
 # TODO: add pacman/arch linux support to homely
+# TODO: ability to symlink using sudo
 # TODO: add a command to homely to update the package manager
 # TODO: add a command to homely to run command as sudo
 # TODO: things to install
@@ -25,28 +26,36 @@ symlink('git/ignore', '~/.config/git/ignore')
 #link aliases
 symlink('bash/.aliases', '~/.aliases')
 
+if yesno("install_norman", "install the norman layout?", default=True):
+#     #TODO: need to handle mac
+    execute(["sudo", "cp", "/etc/default/keyboard", "/etc/default/keyboard.bak"])
+    execute(['sudo','sed', '-i',r's/XKBVARIANT=\"\w*"/XKBVARIANT=\"norman\"/g','/etc/default/keyboard'])
+
 #install zsh https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
-installpkg('zsh', apt='zsh', apk='zsh', pac='zsh', brew='zsh')
+installpkg('zsh', apt='zsh', pacman='zsh', brew='zsh')
 
 #install oh-my-zsh
 if haveexecutable('curl') and haveexecutable('sh'):
-    execute(['sh', '-c', '"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"])
+    mkdir('/tmp/oh-my-zsh')
+    download('https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh', '/tmp/oh-my-zsh/install.sh')
+    execute(['chmod', '+x', '/tmp/oh-my-zsh/install.sh'])
+    #execute(['sh', '-c', '/tmp/oh-my-zsh/install.sh'])
 
 # install fish https://fishshell.com/
 if haveexecutable('apt'):
     execute(['sudo', 'apt-add-repository', 'ppa:fish-shell/release-3'])
     execute(['sudo', 'apt', 'update'])
      
-installpkg('fish', apt='fish', apk='fish', pac='fish', brew='fish')
+installpkg('fish', apt='fish', pacman='fish', brew='fish')
 
 #install fd https://github.com/sharkdp/fd
-installpkg('fd', apt='fd-find', apk='fd', pac='fd', brew='fd')
+installpkg('fd', apt='fd-find', pacman='fd', brew='fd')
 #install bat https://github.com/sharkdp/bat
-installpkg('bat', apt='bat', apk='bat', pac='bat', brew='bat')
+installpkg('bat', apt='bat', pacman='bat', brew='bat')
 
 #Sets up the SSH folder with correct permissions
 #https://superuser.com/a/1559867
-if  yesno("configure_ssh", "configure ssh?", default=True, recommended=True):
+if yesno("configure_ssh", "configure ssh?", default=True, recommended=True):
     mkdir("$HOME/.ssh")
     execute(['chmod', '700', '$HOME/.ssh'])
     execute(['touch', '$HOME/.ssh/authorize_keys'])
@@ -55,8 +64,8 @@ if  yesno("configure_ssh", "configure ssh?", default=True, recommended=True):
 
 if yesno("install_1pass", "install 1password cli?", default=True, recommended=True):
     #if this is linux, we need gpg and unzip.
-    installpkg('gpg', apt='gpg', apk='gpg', pac='gpg', brew='gpg')
-    installpkg('unzip', apt='unzip', apk='unzip', pac='unzip', brew='unzip')
+    installpkg('gpg', apt='gpg', pacman='gpg', brew='gpg')
+    installpkg('unzip', apt='unzip', pacman='unzip', brew='unzip')
     execute(['bash', 'apps/1password.sh'])
     if yesno("install_ssh_key", "install ssh key?", default=False, recommended=True):
         # TODO: perform SSH key download tasks
